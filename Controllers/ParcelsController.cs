@@ -26,13 +26,5 @@ namespace Parcels.Controllers
             parcel.SetCost();
             return RedirectToAction("Index", parcel);
         }
-
-        // [HttpPost("/parcels/cost")]
-        // public ActionResult CalcCost(double length, double width, double height, double weight)
-        // {
-        //     Parcel parcel = new Parcel(length, width, height, weight);
-        //     double cost = parcel.CalcCost();
-        //     return RedirectToAction("Index", cost);
-        // }
     }
 }
