@@ -1,27 +1,31 @@
 using System.Collections.Generic;
+using System;
 
 namespace Parcels.Models
 {
     public class Parcel
     {
-        private double _length { get; set; }
-        private double _width { get; set; }
-        private double _height { get; set; }
-        private double _weight { get; set; }
-        private double _cost { get; set; }
+        public double Length { get; private set; }
+        public double Width { get; private set; }
+        public double Height { get; private set; }
+        public double Weight { get; private set; }
+        public double Cost { get; set; }
 
-        public Parcel(double Length, double Width, double Height, double Weight, double Cost)
+        public Parcel(double length, double width, double height, double weight, double cost)
         {
-            Length = _length;
-            Width = _width;
-            Height = _height;
-            Weight = _weight;
+            Length = length;
+            Width = width;
+            Height = height;
+            Weight = weight;
+            Cost = cost;
         }
 
-        public static double CalcCost()
+        public double SetCost()
         {
-            double volumeInch = this._length * this._width * this._height;
-            double _cost = volumeInch * .50;
+            double volumeInch = this.Length * this.Width * this.Height;
+            double setCost = volumeInch * .50;
+            this.Cost = Math.Round(setCost, 2);
+            return this.Cost;
         }
     }
 }

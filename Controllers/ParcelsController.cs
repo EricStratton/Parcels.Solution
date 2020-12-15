@@ -7,9 +7,9 @@ namespace Parcels.Controllers
     public class ParcelsController: Controller
     {
         [HttpGet("/parcels")]
-        public ActionResult Index()
+        public ActionResult Index(double length, double width, double height, double weight, double cost)
         {
-            Parcel parcel = new Parcel();
+            Parcel parcel = new Parcel(length, width, height, weight, cost);
             return View(parcel);
         }
 
@@ -22,9 +22,17 @@ namespace Parcels.Controllers
         [HttpPost("/parcels")]
         public ActionResult Create(double length, double width, double height, double weight, double cost)
         {
-            Parcels parcel = new Parcel(length, width, height, weight);
-            double cost = parcel.CalculateCost();
-            return RedirectToAction("Index", cost);
+            Parcel parcel = new Parcel(length, width, height, weight, cost);
+            parcel.SetCost();
+            return RedirectToAction("Index", parcel);
         }
+
+        // [HttpPost("/parcels/cost")]
+        // public ActionResult CalcCost(double length, double width, double height, double weight)
+        // {
+        //     Parcel parcel = new Parcel(length, width, height, weight);
+        //     double cost = parcel.CalcCost();
+        //     return RedirectToAction("Index", cost);
+        // }
     }
 }
